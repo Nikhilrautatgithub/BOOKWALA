@@ -12,8 +12,8 @@
         app:menu="@menu/bottom_nav_menu"
         android:background="@color/cardview_light_background"
         android:layout_alignParentBottom="true"
-
-        >
+        app:itemTextColor="@android:color/holo_blue_dark"
+        tools:ignore="MissingClass">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>
