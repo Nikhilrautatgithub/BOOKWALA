@@ -9,18 +9,18 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class Add extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add);
 
         //Initialization and Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.Book);
+        bottomNavigationView.setSelectedItemId(R.id.Add);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.Book:
+                        startActivity(new Intent(getApplicationContext()
+                                ,Book.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.Add:
-                        startActivity(new Intent(getApplicationContext()
-                                ,Add.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.Chat:
                         startActivity(new Intent(getApplicationContext()
@@ -52,4 +52,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-
