@@ -46,6 +46,14 @@ public class Login extends AppCompatActivity {
         login_button=findViewById(R.id.login_button);
         signUp=findViewById(R.id.Register_link);
 
+        /*
+
+                BYPASS AUTHETICATION
+
+         */
+
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));// Remove this to remove bypass
+
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
