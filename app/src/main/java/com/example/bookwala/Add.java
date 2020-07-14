@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Add extends AppCompatActivity {
 
@@ -15,6 +17,16 @@ public class Add extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        FloatingActionButton floatingActionButton=findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Advertisement.class));
+                Intent intent=new Intent(Add.this,Advertisement.class);
+                startActivity(intent);
+            }
+        });
 
         //Initialization and Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
