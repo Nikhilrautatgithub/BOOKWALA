@@ -22,8 +22,8 @@ public class Add extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Advertisement.class));
-                Intent intent=new Intent(Add.this,Advertisement.class);
+                startActivity(new Intent(getApplicationContext(),Advertise_activity.class));
+                Intent intent=new Intent(Add.this,Advertise_activity.class);
                 startActivity(intent);
             }
         });
