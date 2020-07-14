@@ -6,21 +6,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
+public class Add extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add);
+
+        FloatingActionButton floatingActionButton=findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Advertise_activity.class));
+                Intent intent=new Intent(Add.this,Advertise_activity.class);
+                startActivity(intent);
+            }
+        });
 
         //Initialization and Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.Book);
+        bottomNavigationView.setSelectedItemId(R.id.Add);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.Book:
+                        startActivity(new Intent(getApplicationContext()
+                                ,Book.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.Add:
-                        startActivity(new Intent(getApplicationContext()
-                                ,Add.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.Chat:
                         startActivity(new Intent(getApplicationContext()
@@ -52,4 +64,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-
