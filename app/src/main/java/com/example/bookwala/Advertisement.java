@@ -1,38 +1,80 @@
 package com.example.bookwala;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Advertise_activity extends AppCompatActivity {
+public class Advertisement extends AppCompatActivity {
 
     Spinner dd_semester , dd_subject , dd_publication;
     ArrayList<String> arr_list_sem;
     ArrayAdapter<String> arr_adapt_sem;
 
+    ImageView add_img_book;
     ArrayList<String> arrayList_sem1,arrayList_sem2,arrayList_sem3,arrayList_sem4,arrayList_sem5,arrayList_sem6,arrayList_sem7,arrayList_sem8;
     ArrayAdapter<String> arr_adapter_subject;
 
+    ViewPager view_page;
+
     ArrayList<String> arrayList_publication;
     ArrayAdapter<String> arr_adapt_publication;
+    Button btn_add_photos;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
+    ArrayList<Bitmap> list = new ArrayList<Bitmap>();
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // Gets called when user has taken the image.
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            // BitMap is data structure of image file
+            // which store the image in memory
+            Bitmap photo = (Bitmap)data.getExtras()
+                    .get("data");
+
+            list.add(photo);
+
+            // Set the image in imageview for display
+            Log.d("here", "onActivityResult: 13");
+
+            //Used for slider of taken images.
+            ViewPager vp = findViewById(R.id.view_page);
+            ImageAdapter adapter = new ImageAdapter(Advertisement.this, list);
+            vp.setAdapter(adapter);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_advertise_activity);
+        setContentView(R.layout.activity_advertisement);
 
         dd_semester=(Spinner)findViewById(R.id.select_sem_dd);
         dd_subject=(Spinner)findViewById(R.id.select_subject_dd);
 
         dd_publication=(Spinner)findViewById(R.id.select_publication_dd);
 
+
+        //add_img_book = findViewById(R.id.add_img_book);
+
+        btn_add_photos = findViewById(R.id.btn_add_photos);
         arr_list_sem=new ArrayList<>();
         arr_list_sem.add("1");
         arr_list_sem.add("2");
@@ -140,4 +182,19 @@ public class Advertise_activity extends AppCompatActivity {
         arr_adapt_publication=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_publication);
         dd_publication.setAdapter(arr_adapt_publication);
 
-    }}
+       btn_add_photos.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               //To take photo of books.
+               Intent camera_intent
+                       = new Intent(MediaStore
+                       .ACTION_IMAGE_CAPTURE);
+
+               startActivityForResult(camera_intent, REQUEST_IMAGE_CAPTURE);
+           }
+       });
+
+
+
+    }
+}

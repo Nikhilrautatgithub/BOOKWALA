@@ -3,12 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Advertise_activity"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
-    >
-
+    tools:context=".Advertisement">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -110,8 +107,54 @@
                 android:ems="10"
                 android:inputType="number" />
 
+            <Button
+                android:id="@+id/btn_add_photos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Add BOOK Photo"
+                ></Button>
+
 
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="5"
+        android:orientation="vertical"
+        >
+
+       <!-- <ImageView
+            android:id="@+id/add_img_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_weight="4"
+            android:src="@drawable/icons8_book_100"
+
+            android:layout_marginLeft="3dp"
+            ></ImageView> -->
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="4"
+            android:id="@+id/view_page"
+            >
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:padding="10dp"
+            android:textSize="12sp"
+            ></Button>
+    </LinearLayout>
+
 </LinearLayout>
