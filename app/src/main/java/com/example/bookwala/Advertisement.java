@@ -76,6 +76,7 @@ public class Advertisement extends AppCompatActivity {
 
         btn_add_photos = findViewById(R.id.btn_add_photos);
         arr_list_sem=new ArrayList<>();
+        arr_list_sem.add("----Select your semester----");
         arr_list_sem.add("1");
         arr_list_sem.add("2");
         arr_list_sem.add("3");
@@ -90,39 +91,100 @@ public class Advertisement extends AppCompatActivity {
 
         //+++++++++++++++  Subject Spinner  ++++++++++++++++++++++++
         arrayList_sem1=new ArrayList<>();
-        arrayList_sem1.add("FPL-I");
-        arrayList_sem1.add("Physics");
-        arrayList_sem1.add("Civil");
+        arrayList_sem1.add("----select subject name----");
+        arrayList_sem1.add("Engineering Mathematics I");
+        arrayList_sem1.add("Engineering Chemistry");
+        arrayList_sem1.add("Engineering Physics");
+        arrayList_sem1.add("Engineering graphics");
+        arrayList_sem1.add("Basic Electrical engineering");
+        arrayList_sem1.add("Basic Electronics Engineering");
+        arrayList_sem1.add("Basic civil and environmental Engineering");
+        arrayList_sem1.add("Fundamentals of programming languages I");
+
+
 
         arrayList_sem2=new ArrayList<>();
-        arrayList_sem2.add("FPL-II");
-        arrayList_sem2.add("Chemistry");
+        arrayList_sem2.add("----select subject name----");
+        arrayList_sem2.add("Engineering Mathematics II");
+        arrayList_sem2.add("Engineering Physics");
+        arrayList_sem2.add("Basic Mechanical Engineering");
+        arrayList_sem2.add("Basic Electrical engineering");
+        arrayList_sem2.add("Basic Electronics Engineering");
+        arrayList_sem2.add("Fundamentals of programming languages II");
+        arrayList_sem2.add("Engineering Mechanics");
+
+
+
 
         arrayList_sem3=new ArrayList<>();
-        arrayList_sem3.add("Data structure");
-        arrayList_sem3.add("virkar");
+        arrayList_sem3.add("----select subject name----");
+        arrayList_sem3.add("Discrete Mathematics");
+        arrayList_sem3.add("Digital Electronics and Logic Design");
+        arrayList_sem3.add("Data Structures and Algorithms ");
+        arrayList_sem3.add("Computer Organization and Architecture");
+        arrayList_sem3.add("Object Oriented Programming");
+
+
 
         arrayList_sem4=new ArrayList<>();
-        arrayList_sem4.add("CG");
-        arrayList_sem4.add("PPL");
+        arrayList_sem4.add("----select subject name----");
+        arrayList_sem4.add("Engineering Mathematics III");
+        arrayList_sem4.add("Computer Graphics");
+        arrayList_sem4.add("Advanced Data Structures");
+        arrayList_sem4.add("Microprocessor ");
+        arrayList_sem4.add("Principles of Programming Languages");
+
 
         arrayList_sem5=new ArrayList<>();
-        arrayList_sem5.add("SMD");
-        arrayList_sem5.add("kay mahit");
+        arrayList_sem5.add("----select subject name----");
+        arrayList_sem5.add("Theory of computation(Toc)");
+        arrayList_sem5.add("Database Management System(dbms)");
+        arrayList_sem5.add("Software Engineering & project management(Sepm)");
+        arrayList_sem5.add("Information system & Engineering economics(Isee)");
+        arrayList_sem5.add("Computer Networks");
+
 
         arrayList_sem6=new ArrayList<>();
-        arrayList_sem6.add("spos");
-        arrayList_sem6.add("WT");
+        arrayList_sem6.add("----select subject name----");
+        arrayList_sem6.add("Design and analysis of algorithm(Daa)");
+        arrayList_sem6.add(" System Programming and operating system(SPOS) ");
+        arrayList_sem6.add("Embedded Systems and Internet of Things(ESIOT)");
+        arrayList_sem6.add(" Software Modeling And Design(SMD) ");
+        arrayList_sem6.add("Web Technology(WT)");
 
 
         arrayList_sem7=new ArrayList<>();
-        arrayList_sem7.add("AIR");
-        arrayList_sem7.add("DBW");
+        arrayList_sem7.add("----select subject name----");
+        arrayList_sem7.add("High performance computing ");
+        arrayList_sem7.add("Artificial intelligence and robotics");
+        arrayList_sem7.add("Data Analytics ");
+        arrayList_sem7.add("Digital Signal Processing");
+        arrayList_sem7.add("Software Architecture and design");
+        arrayList_sem7.add("Pervasive and Ubiquitous computing");
+        arrayList_sem7.add("Data Mining and wearhousing");
+        arrayList_sem7.add("Distributed System");
+        arrayList_sem7.add("Software Testing and Quality Assuarance");
+        arrayList_sem7.add("Operational Research");
+        arrayList_sem7.add("Mobile Communication");
+
+
+
 
 
         arrayList_sem8=new ArrayList<>();
-        arrayList_sem8.add("Final year");
-        arrayList_sem8.add("final year");
+        arrayList_sem8.add("----select subject name----");
+        arrayList_sem8.add("Machine Learning");
+        arrayList_sem8.add("Information and cyber security");
+        arrayList_sem8.add("Advanced Digital Signal Processing");
+        arrayList_sem8.add("Compilers");
+        arrayList_sem8.add("Embedded and real Time Operating system");
+        arrayList_sem8.add("Soft Computing and Optimisation Algorithms");
+        arrayList_sem8.add("Software Defined Networks");
+        arrayList_sem8.add("Human Computer Interface");
+        arrayList_sem8.add("Cloud Computing");
+        arrayList_sem8.add("Open Elective");
+
+
 
         dd_semester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
