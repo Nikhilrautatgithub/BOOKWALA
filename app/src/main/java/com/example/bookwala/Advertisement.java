@@ -28,7 +28,7 @@ public class Advertisement extends AppCompatActivity {
     ArrayAdapter<String> arr_adapt_sem;
 
     ImageView add_img_book;
-    ArrayList<String> arrayList_sem1,arrayList_sem2,arrayList_sem3,arrayList_sem4,arrayList_sem5,arrayList_sem6,arrayList_sem7,arrayList_sem8;
+    ArrayList<String> arrayList_none ,arrayList_sem1,arrayList_sem2,arrayList_sem3,arrayList_sem4,arrayList_sem5,arrayList_sem6,arrayList_sem7,arrayList_sem8;
     ArrayAdapter<String> arr_adapter_subject;
 
     ViewPager view_page;
@@ -111,6 +111,9 @@ public class Advertisement extends AppCompatActivity {
         dd_semester.setAdapter(arr_adapt_sem);
 
         //+++++++++++++++  Subject Spinner  ++++++++++++++++++++++++
+        arrayList_none=new ArrayList<>();
+        arrayList_none.add("Please select semester");
+
         arrayList_sem1=new ArrayList<>();
         arrayList_sem1.add("----select subject name----");
         arrayList_sem1.add("Engineering Mathematics I");
@@ -212,33 +215,37 @@ public class Advertisement extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position==0)
                 {
-                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem1);
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_none);
                 }
                 if (position==1)
                 {
-                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem2);
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem1);
                 }
                 if (position==2)
                 {
-                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem3);
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem2);
                 }
                 if (position==3)
                 {
-                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem4);
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem3);
                 }
                 if (position==4)
                 {
-                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem5);
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem4);
                 }
                 if (position==5)
                 {
-                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem6);
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem5);
                 }
                 if (position==6)
                 {
-                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem7);
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem6);
                 }
                 if (position==7)
+                {
+                    arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem7);
+                }
+                if (position==8)
                 {
                     arr_adapter_subject=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_sem8);
                 }
