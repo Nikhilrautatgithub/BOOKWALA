@@ -23,7 +23,7 @@ import java.util.List;
 
 public class Advertisement extends AppCompatActivity {
 
-    Spinner dd_semester , dd_subject , dd_publication;
+    Spinner dd_semester , dd_subject , dd_publication , dd_yearofpublication;
     ArrayList<String> arr_list_sem;
     ArrayAdapter<String> arr_adapt_sem;
 
@@ -35,6 +35,11 @@ public class Advertisement extends AppCompatActivity {
 
     ArrayList<String> arrayList_publication;
     ArrayAdapter<String> arr_adapt_publication;
+
+    ArrayList<String> arrayList_yearofpublication;
+    ArrayAdapter<String> arr_adapt_yearofpublication;
+
+
     Button btn_add_photos;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -70,8 +75,24 @@ public class Advertisement extends AppCompatActivity {
         dd_subject=(Spinner)findViewById(R.id.select_subject_dd);
 
         dd_publication=(Spinner)findViewById(R.id.select_publication_dd);
+        dd_yearofpublication=(Spinner)findViewById(R.id.select_year_dd);
+        //----------------spinner for publication year---------------------
+        arrayList_yearofpublication=new ArrayList<>();
+        arrayList_yearofpublication.add("----Select year of publication----");
+        arrayList_yearofpublication.add("2015");
+        arrayList_yearofpublication.add("2016");
+        arrayList_yearofpublication.add("2017");
+        arrayList_yearofpublication.add("2018");
+        arrayList_yearofpublication.add("2019");
+        arrayList_yearofpublication.add("2020");
+
+        arr_adapt_yearofpublication=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_yearofpublication);
+        dd_yearofpublication.setAdapter(arr_adapt_yearofpublication);
 
 
+
+
+        //--------------------------------------------------------------------
         //add_img_book = findViewById(R.id.add_img_book);
 
         btn_add_photos = findViewById(R.id.btn_add_photos);
@@ -238,6 +259,10 @@ public class Advertisement extends AppCompatActivity {
         arrayList_publication.add("decode");
         arrayList_publication.add("Technical");
         arrayList_publication.add("Techneo");
+        arrayList_publication.add("Nirali");
+        arrayList_publication.add("Easy solutions");
+        arrayList_publication.add("Techknowlege");
+
         arrayList_publication.add("Others");
 
 
