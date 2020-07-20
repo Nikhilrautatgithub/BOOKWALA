@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser()!=null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),Book.class));
         }
 
         mDialog=new ProgressDialog(this);
@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity {
 
          */
 
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));// Remove this to remove bypass
+        startActivity(new Intent(getApplicationContext(),Book.class));// Remove this to remove bypass
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,9 +76,9 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(),Book.class));
                             Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            Intent intent = new Intent(Login.this, Book.class);
                             startActivity(intent);
 
                             mDialog.dismiss();

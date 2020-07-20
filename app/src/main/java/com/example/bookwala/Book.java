@@ -2,6 +2,8 @@ package com.example.bookwala;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +12,55 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    ProductAdapter adapter;
+    List<Product> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
+
+        productList = new ArrayList<>();
+
+        recyclerView= findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //adding some items to our list
+        productList.add(
+                new Product(
+                        1,
+                        "Microprocessor",
+                        "Techmax",
+                        2015,
+                        600,
+                        R.drawable.book));
+
+        productList.add(
+                new Product(
+                        1,
+                        "maths",
+                        "nirali",
+                        2015,
+                        700,
+                        R.drawable.book));
+
+        productList.add(
+                new Product(
+                        1,
+                        "ADS",
+                        "techmax",
+                        2015,
+                        300,
+                        R.drawable.book));
+
+        adapter = new ProductAdapter(this,productList);
+        recyclerView.setAdapter(adapter);
 
         //Initialization and Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
