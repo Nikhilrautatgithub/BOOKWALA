@@ -61,6 +61,48 @@ public class Add extends AppCompatActivity {
                         2015,
                         300,
                         R.drawable.book));
+        productList.add(
+                new Product(
+                        1,
+                        "subodh",
+                        "nirali",
+                        2015,
+                        700,
+                        R.drawable.book));
+
+        productList.add(
+                new Product(
+                        1,
+                        "nikhil",
+                        "techmax",
+                        2015,
+                        300,
+                        R.drawable.book));
+        productList.add(
+                new Product(
+                        1,
+                        "ADS",
+                        "techmax",
+                        2015,
+                        300,
+                        R.drawable.book));
+        productList.add(
+                new Product(
+                        1,
+                        "subodh",
+                        "nirali",
+                        2015,
+                        700,
+                        R.drawable.book));
+
+        productList.add(
+                new Product(
+                        1,
+                        "nikhil",
+                        "techmax",
+                        2015,
+                        300,
+                        R.drawable.book));
 
         adapter = new ProductAdapter(this,productList);
         recyclerView.setAdapter(adapter);

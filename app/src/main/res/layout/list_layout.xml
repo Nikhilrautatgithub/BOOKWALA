@@ -10,7 +10,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="8dp">
 
             <ImageView
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewSemester"
-                android:layout_marginLeft="193dp"
+                android:layout_marginLeft="162dp"
                 android:layout_marginTop="-26dp"
                 android:layout_toRightOf="@id/imageView"
                 android:text="500"
@@ -93,35 +93,35 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Publication:"
+                android:layout_marginLeft="128dp"
                 android:layout_marginTop="22dp"
-                android:layout_marginLeft="128dp"/>
+                android:text="Publication:" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Year of Publication:"
+                android:layout_marginLeft="128dp"
                 android:layout_marginTop="45dp"
-                android:layout_marginLeft="128dp"/>
+                android:text="Year of Publication:" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Semester:"
+                android:layout_marginLeft="128dp"
                 android:layout_marginTop="70dp"
-                android:layout_marginLeft="128dp"/>
+                android:text="Semester:" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹"
+                android:layout_marginLeft="270dp"
                 android:layout_marginTop="62dp"
-                android:layout_marginLeft="300dp"
+                android:text="₹"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
