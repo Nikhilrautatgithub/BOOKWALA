@@ -22,8 +22,15 @@
                 android:id="@+id/comp_warning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_bold"
-                android:text="@string/only_computer_branch" />
+                android:layout_gravity="center"
+                android:background="@color/blue"
+                android:drawableLeft="@drawable/warning_advertisement"
+                android:drawablePadding="20dp"
+                android:fontFamily="@font/abhaya_libre_bold"
+                android:gravity="center"
+                android:text="@string/only_computer_branch"
+                android:textAlignment="textStart"
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/select_semester"
@@ -113,6 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/quicksand_bold"
                 android:text="Add BOOK Photo"
                 ></Button>
             <androidx.viewpager.widget.ViewPager
@@ -130,6 +139,8 @@
                 android:layout_height="wrap_content"
                 android:text="Submit"
                 android:padding="10dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/quicksand_bold"
                 android:textSize="12sp"
                 ></Button>
 

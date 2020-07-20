@@ -4,14 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/main_background"
-
     android:layout_height="match_parent"
     tools:context=".Add">
+    <TextView
+        android:id="@+id/history_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/blue"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/abhaya_libre_bold"
+        android:gravity="center"
+        android:text="Your history"
+        android:textSize="30dp"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
+        android:layout_below="@+id/history_text"
         android:layout_height="match_parent"
-        />
+        tools:ignore="UnknownId" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
