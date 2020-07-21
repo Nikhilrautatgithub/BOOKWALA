@@ -1,10 +1,18 @@
 package com.example.bookwala;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -17,12 +25,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Advertisement extends AppCompatActivity {
 
+    public static final int CAMERA_PERMISSION_CODE = 101;
     Spinner dd_semester , dd_subject , dd_publication , dd_yearofpublication;
     ArrayList<String> arr_list_sem;
     ArrayAdapter<String> arr_adapt_sem;
@@ -40,31 +51,19 @@ public class Advertisement extends AppCompatActivity {
     ArrayAdapter<String> arr_adapt_yearofpublication;
 
 
-    Button btn_add_photos;
+    Button btn_image_capture;
+    Button btn_image_gallery;
+
+
+
+
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     ArrayList<Bitmap> list = new ArrayList<Bitmap>();
+    ArrayList<File> file = new ArrayList<>();
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        // Gets called when user has taken the image.
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
-            // BitMap is data structure of image file
-            // which store the image in memory
-            Bitmap photo = (Bitmap)data.getExtras()
-                    .get("data");
 
-            list.add(photo);
-
-            // Set the image in imageview for display
-            Log.d("here", "onActivityResult: 13");
-
-            //Used for slider of taken images.
-            ViewPager vp = findViewById(R.id.view_page);
-            ImageAdapter adapter = new ImageAdapter(Advertisement.this, list);
-            vp.setAdapter(adapter);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +94,9 @@ public class Advertisement extends AppCompatActivity {
         //--------------------------------------------------------------------
         //add_img_book = findViewById(R.id.add_img_book);
 
-        btn_add_photos = findViewById(R.id.btn_add_photos);
+        btn_image_capture = findViewById(R.id.btn_image_capture);
+        btn_image_gallery = findViewById(R.id.btn_image_gallery);
+
         arr_list_sem=new ArrayList<>();
         arr_list_sem.add("----Select your semester----");
         arr_list_sem.add("1");
@@ -276,19 +277,87 @@ public class Advertisement extends AppCompatActivity {
         arr_adapt_publication=new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_publication);
         dd_publication.setAdapter(arr_adapt_publication);
 
-       btn_add_photos.setOnClickListener(new View.OnClickListener() {
+
+        /*
+        * To capture and upload an image from camera
+        */
+       btn_image_capture.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               //To take photo of books.
-               Intent camera_intent
-                       = new Intent(MediaStore
-                       .ACTION_IMAGE_CAPTURE);
+               askCameraPermission();                                          //user defined function
 
-               startActivityForResult(camera_intent, REQUEST_IMAGE_CAPTURE);
+
            }
        });
 
 
+       /*
+       * To upload an image from galley
+       */
+        btn_image_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
+
+    private void askCameraPermission() {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){//check if camera permission granted
+
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);//request camera permission
+
+        }else{
+
+             openCamera();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == CAMERA_PERMISSION_CODE)
+        {
+            if(grantResults.length >  0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                openCamera();
+            }else{                                      //If permission not granted
+                Toast.makeText(this,"Camera permission required to take photo",Toast.LENGTH_LONG).show();
+
+            }
+        }
+    }
+
+    private void openCamera() {                                                //Opens camera
+
+        Intent camera_intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    //To take photo of books.
+        startActivityForResult(camera_intent, REQUEST_IMAGE_CAPTURE);
+
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // Gets called when user has taken the image.
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (requestCode == Activity.RESULT_OK) {
+
+                // BitMap is data structure of image file
+                // which store the image in memory
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+                list.add(photo);
+                ;
+
+                // Set the image in imageview for display
+                Log.d("here", "onActivityResult: 13");
+
+                //Used for slider of taken images.
+                ViewPager vp = findViewById(R.id.view_page);
+                ImageAdapter adapter = new ImageAdapter(Advertisement.this, list);
+                vp.setAdapter(adapter);
+
+            }
+        }
+    }
+
 }

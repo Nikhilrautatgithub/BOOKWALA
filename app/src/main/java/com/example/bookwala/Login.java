@@ -54,6 +54,10 @@ public class Login extends AppCompatActivity {
 
         startActivity(new Intent(getApplicationContext(),Book.class));// Remove this to remove bypass
 
+
+
+
+
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
