@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -321,7 +322,8 @@ public class Advertisement extends AppCompatActivity {
 
         }else{
 
-             dispatchTakePictureIntent();
+            dispatchTakePictureIntent();
+           // openCamera();
         }
     }
 
@@ -331,87 +333,92 @@ public class Advertisement extends AppCompatActivity {
         {
             if(grantResults.length >  0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 dispatchTakePictureIntent();
+                //openCamera();
             }else{                                      //If permission not granted
                 Toast.makeText(this,"Camera permission required to take photo",Toast.LENGTH_LONG).show();
 
             }
         }
     }
-/*
+
     private void openCamera() {                                                //Opens camera
 
         Intent camera_intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    //To take photo of books.
         startActivityForResult(camera_intent, REQUEST_IMAGE_CAPTURE);
 
-    }*/
+    }
 
     @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         Log.d("in", "onActivityResult: in fun");
         // Gets called when user has taken the image.
-        if (requestCode == REQUEST_IMAGE_CAPTURE ){//&& resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 
-
-               // File f = new File(currentPhotoPath);
 
                 // BitMap is data structure of image file
                 // which store the image in memory
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+            Bitmap photo = BitmapFactory.decodeFile(currentPhotoPath);
+            //Bitmap photo = (Bitmap) data.getExtras().get("data");
                 list.add(photo);
 
 
                 // Set the image in imageview for display
-                Log.d("here", "onActivityResult: image properly captured");
+
 
                 //Used for slider of taken images.
                 ViewPager vp = findViewById(R.id.view_page);
                 ImageAdapter adapter = new ImageAdapter(Advertisement.this, list);
                 vp.setAdapter(adapter);
 
-
+            Log.d("here", "onActivityResult: image properly captured");
         }
     }
 
 
 
-    private File createImageFile() throws IOException {             //Creating image
+    private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName,".jpg",storageDir);
-        Log.d("here", "createImageFile: file created");
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
 
-    private void dispatchTakePictureIntent() {
 
+    private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            Log.d("here", "dispatchTakePictureIntent: photo saving");
             // Create the File where the photo should go
             File photoFile = null;
             try {
-               photoFile = createImageFile();
+                photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Log.d("here", "dispatchTakePictureIntent: file not created");
 
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Log.d("here", "dispatchTakePictureIntent: file was successfully created");
-                Uri photoURI = FileProvider.getUriForFile(this,"com.example.bookwala.android.fileprovider",photoFile);
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.bookwala.android.fileprovider",
+                        photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
     }
+
 
 
 
