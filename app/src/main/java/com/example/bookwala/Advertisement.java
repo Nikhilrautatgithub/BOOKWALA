@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.content.PermissionChecker;
 import androidx.viewpager.widget.ViewPager;
 
@@ -16,7 +17,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -28,12 +31,15 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Advertisement extends AppCompatActivity {
 
-    public static final int CAMERA_PERMISSION_CODE = 101;
+
     Spinner dd_semester , dd_subject , dd_publication , dd_yearofpublication;
     ArrayList<String> arr_list_sem;
     ArrayAdapter<String> arr_adapt_sem;
@@ -54,11 +60,13 @@ public class Advertisement extends AppCompatActivity {
     Button btn_image_capture;
     Button btn_image_gallery;
 
+    //ImageView imageView;
 
-
+    String currentPhotoPath;
 
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    public static final int CAMERA_PERMISSION_CODE = 101;
 
     ArrayList<Bitmap> list = new ArrayList<Bitmap>();
     ArrayList<File> file = new ArrayList<>();
@@ -96,6 +104,8 @@ public class Advertisement extends AppCompatActivity {
 
         btn_image_capture = findViewById(R.id.btn_image_capture);
         btn_image_gallery = findViewById(R.id.btn_image_gallery);
+
+        //imageView = findViewById(R.id.test_view);
 
         arr_list_sem=new ArrayList<>();
         arr_list_sem.add("---- Select your semester ----");
@@ -311,7 +321,7 @@ public class Advertisement extends AppCompatActivity {
 
         }else{
 
-             openCamera();
+             dispatchTakePictureIntent();
         }
     }
 
@@ -320,45 +330,90 @@ public class Advertisement extends AppCompatActivity {
         if(requestCode == CAMERA_PERMISSION_CODE)
         {
             if(grantResults.length >  0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                openCamera();
+                dispatchTakePictureIntent();
             }else{                                      //If permission not granted
                 Toast.makeText(this,"Camera permission required to take photo",Toast.LENGTH_LONG).show();
 
             }
         }
     }
-
+/*
     private void openCamera() {                                                //Opens camera
 
         Intent camera_intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    //To take photo of books.
         startActivityForResult(camera_intent, REQUEST_IMAGE_CAPTURE);
 
-    }
+    }*/
 
     @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Log.d("in", "onActivityResult: in fun");
         // Gets called when user has taken the image.
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
-            if (requestCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE ){//&& resultCode == Activity.RESULT_OK) {
+
+
+               // File f = new File(currentPhotoPath);
 
                 // BitMap is data structure of image file
                 // which store the image in memory
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
-
                 list.add(photo);
-                ;
+
 
                 // Set the image in imageview for display
-                Log.d("here", "onActivityResult: 13");
+                Log.d("here", "onActivityResult: image properly captured");
 
                 //Used for slider of taken images.
                 ViewPager vp = findViewById(R.id.view_page);
                 ImageAdapter adapter = new ImageAdapter(Advertisement.this, list);
                 vp.setAdapter(adapter);
 
+
+        }
+    }
+
+
+
+    private File createImageFile() throws IOException {             //Creating image
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName,".jpg",storageDir);
+        Log.d("here", "createImageFile: file created");
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+
+    private void dispatchTakePictureIntent() {
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            Log.d("here", "dispatchTakePictureIntent: photo saving");
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+               photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                Log.d("here", "dispatchTakePictureIntent: file not created");
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Log.d("here", "dispatchTakePictureIntent: file was successfully created");
+                Uri photoURI = FileProvider.getUriForFile(this,"com.example.bookwala.android.fileprovider",photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
     }
+
+
+
 
 }
