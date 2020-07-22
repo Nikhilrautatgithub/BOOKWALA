@@ -34,8 +34,8 @@ public class DatabaseHelper {
         map.put(key_email , email);
 
         Log.d("here", "add_user_details: second");
-
-        db.collection("Users").document().set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+        String document_name = email;
+        db.collection("Users").document(email).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("in Success", "onSuccess: ");

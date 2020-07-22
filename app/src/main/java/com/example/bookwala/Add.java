@@ -29,6 +29,13 @@ public class Add extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        Intent intent = getIntent();
+        final int user_id = intent.getIntExtra("user_id" , 1);
+        final String email = intent.getStringExtra("email");
+        final String fname = intent.getStringExtra("fname");
+        final String lname = intent.getStringExtra("lname");
+
+
         productList = new ArrayList<>();
 
         recyclerView= findViewById(R.id.recyclerView);
@@ -121,23 +128,48 @@ public class Add extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.Book:
                         Log.d("here", "onNavigationItemSelected: Add Book");
-                        startActivity(new Intent(getApplicationContext()
-                                ,Book.class));
+
+                        Intent book = new Intent(Add.this , Book.class);
+                        book.putExtra("user_id" , user_id);
+                        book.putExtra("email" , email);
+                        book.putExtra("fname" , fname);
+                        book.putExtra("lname" , lname);
+
+                        startActivity(book);
                         overridePendingTransition(0,0);
                         return true;
+
                     case R.id.Add:
                         Log.d("here", "onNavigationItemSelected: Add Add");
                         return true;
+
                     case R.id.Chat:
+
+                        Intent chat = new Intent(Add.this , Chat.class);
+                        chat.putExtra("user_id" , user_id);
+                        chat.putExtra("email" , email);
+                        chat.putExtra("fname" , fname);
+                        chat.putExtra("lname" , lname);
+
+                        startActivity(chat);
+
                         Log.d("here", "onNavigationItemSelected: Add Chat");
-                        startActivity(new Intent(getApplicationContext()
-                                ,Chat.class));
+
                         overridePendingTransition(0,0);
                         return true;
+
                     case R.id.Profile:
+
+                        Intent profile = new Intent(Add.this , Profile.class);
+                        profile.putExtra("user_id" , user_id);
+                        profile.putExtra("email" , email);
+                        profile.putExtra("fname" , fname);
+                        profile.putExtra("lname" , lname);
+
+                        startActivity(profile);
+
                         Log.d("here", "onNavigationItemSelected: Add Profile");
-                        startActivity(new Intent(getApplicationContext()
-                                ,Profile.class));
+
                         overridePendingTransition(0,0);
                         return true;
                 }

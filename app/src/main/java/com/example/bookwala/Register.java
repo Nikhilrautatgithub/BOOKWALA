@@ -93,10 +93,10 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                            Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
 
                             Log.d("here", "onComplete: ");
-                            databaseHelper.add_user_details(1 , mFirstname , mLastname , mEmail);
+                            databaseHelper.add_user_details(2 , mFirstname , mLastname , mEmail);
                             Log.d("here", "onComplete: ");
                             mDialog.dismiss();
                         }
