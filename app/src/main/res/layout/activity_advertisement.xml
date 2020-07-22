@@ -42,6 +42,8 @@
                 android:id="@+id/select_sem_dd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorPrimary"
                 android:layout_marginTop="10dp"
 
                 />
@@ -59,6 +61,8 @@
                 android:id="@+id/select_subject_dd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorPrimary"
                 android:layout_marginTop="10dp"
 
                 />
@@ -76,6 +80,8 @@
                 android:id="@+id/select_publication_dd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorPrimary"
                 android:layout_marginTop="10dp"
                 />
 
@@ -92,6 +98,9 @@
                 android:id="@+id/select_year_dd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+
+                android:background="@color/colorPrimary"
                 android:layout_marginTop="10dp"
                 />
 
@@ -109,11 +118,15 @@
                 android:id="@+id/editTextNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
                 android:ems="10"
                 android:inputType="number" />
+
             <LinearLayout
             android:weightSum="2"
             android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
             android:layout_height="wrap_content">
 
             <Button

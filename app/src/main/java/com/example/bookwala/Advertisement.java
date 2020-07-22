@@ -77,7 +77,7 @@ public class Advertisement extends AppCompatActivity {
         dd_yearofpublication=(Spinner)findViewById(R.id.select_year_dd);
         //----------------spinner for publication year---------------------
         arrayList_yearofpublication=new ArrayList<>();
-        arrayList_yearofpublication.add("----Select year of publication----");
+        arrayList_yearofpublication.add("---- Select year of publication ----");
         arrayList_yearofpublication.add("2015");
         arrayList_yearofpublication.add("2016");
         arrayList_yearofpublication.add("2017");
@@ -98,7 +98,7 @@ public class Advertisement extends AppCompatActivity {
         btn_image_gallery = findViewById(R.id.btn_image_gallery);
 
         arr_list_sem=new ArrayList<>();
-        arr_list_sem.add("----Select your semester----");
+        arr_list_sem.add("---- Select your semester ----");
         arr_list_sem.add("1");
         arr_list_sem.add("2");
         arr_list_sem.add("3");
@@ -113,10 +113,10 @@ public class Advertisement extends AppCompatActivity {
 
         //+++++++++++++++  Subject Spinner  ++++++++++++++++++++++++
         arrayList_none=new ArrayList<>();
-        arrayList_none.add("Please select semester");
+        arrayList_none.add("---- Please select semester ----");
 
         arrayList_sem1=new ArrayList<>();
-        arrayList_sem1.add("----select subject name----");
+        arrayList_sem1.add("---- Select subject name ----");
         arrayList_sem1.add("Engineering Mathematics I");
         arrayList_sem1.add("Engineering Chemistry");
         arrayList_sem1.add("Engineering Physics");
@@ -129,7 +129,7 @@ public class Advertisement extends AppCompatActivity {
 
 
         arrayList_sem2=new ArrayList<>();
-        arrayList_sem2.add("----select subject name----");
+        arrayList_sem2.add("---- Select subject name ----");
         arrayList_sem2.add("Engineering Mathematics II");
         arrayList_sem2.add("Engineering Physics");
         arrayList_sem2.add("Basic Mechanical Engineering");
@@ -142,7 +142,7 @@ public class Advertisement extends AppCompatActivity {
 
 
         arrayList_sem3=new ArrayList<>();
-        arrayList_sem3.add("----select subject name----");
+        arrayList_sem3.add("---- Select subject name ----");
         arrayList_sem3.add("Discrete Mathematics");
         arrayList_sem3.add("Digital Electronics and Logic Design");
         arrayList_sem3.add("Data Structures and Algorithms ");
@@ -152,7 +152,7 @@ public class Advertisement extends AppCompatActivity {
 
 
         arrayList_sem4=new ArrayList<>();
-        arrayList_sem4.add("----select subject name----");
+        arrayList_sem4.add("---- Select subject name ----");
         arrayList_sem4.add("Engineering Mathematics III");
         arrayList_sem4.add("Computer Graphics");
         arrayList_sem4.add("Advanced Data Structures");
@@ -161,7 +161,7 @@ public class Advertisement extends AppCompatActivity {
 
 
         arrayList_sem5=new ArrayList<>();
-        arrayList_sem5.add("----select subject name----");
+        arrayList_sem5.add("---- Select subject name ----");
         arrayList_sem5.add("Theory of computation(Toc)");
         arrayList_sem5.add("Database Management System(dbms)");
         arrayList_sem5.add("Software Engineering & project management(Sepm)");
@@ -170,7 +170,7 @@ public class Advertisement extends AppCompatActivity {
 
 
         arrayList_sem6=new ArrayList<>();
-        arrayList_sem6.add("----select subject name----");
+        arrayList_sem6.add("---- Select subject name ----");
         arrayList_sem6.add("Design and analysis of algorithm(Daa)");
         arrayList_sem6.add(" System Programming and operating system(SPOS) ");
         arrayList_sem6.add("Embedded Systems and Internet of Things(ESIOT)");
@@ -179,7 +179,7 @@ public class Advertisement extends AppCompatActivity {
 
 
         arrayList_sem7=new ArrayList<>();
-        arrayList_sem7.add("----select subject name----");
+        arrayList_sem7.add("---- Select subject name ----");
         arrayList_sem7.add("High performance computing ");
         arrayList_sem7.add("Artificial intelligence and robotics");
         arrayList_sem7.add("Data Analytics ");
@@ -197,7 +197,7 @@ public class Advertisement extends AppCompatActivity {
 
 
         arrayList_sem8=new ArrayList<>();
-        arrayList_sem8.add("----select subject name----");
+        arrayList_sem8.add("---- Select subject name ----");
         arrayList_sem8.add("Machine Learning");
         arrayList_sem8.add("Information and cyber security");
         arrayList_sem8.add("Advanced Digital Signal Processing");
@@ -263,6 +263,7 @@ public class Advertisement extends AppCompatActivity {
 
         //+++++++++++++++  Publication spinner  ++++++++++++++++++
         arrayList_publication=new ArrayList<>();
+        arrayList_publication.add("---- Select book publication ----");
         arrayList_publication.add("Techmax");
         arrayList_publication.add("decode");
         arrayList_publication.add("Technical");
