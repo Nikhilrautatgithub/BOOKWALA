@@ -21,8 +21,12 @@
             <TextView
                 android:id="@+id/comp_warning"
                 android:layout_width="match_parent"
+                android:background="@color/blue"
+                android:drawablePadding="20dp"
+                android:textSize="30dp"
+                android:fontFamily="@font/abhaya_libre_bold"
+                android:drawableLeft="@drawable/warning_advertisement"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_bold"
                 android:text="@string/only_computer_branch" />
 
             <TextView
@@ -117,6 +121,7 @@
                 android:id="@+id/btn_image_capture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
                 android:textSize="12sp"
                 android:text="Take Photo"
                 />
@@ -125,6 +130,7 @@
                 android:id="@+id/btn_image_gallery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
                 android:textSize="12sp"
                 android:text="Select from device"
                 />
@@ -144,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:text="Submit"
                 android:padding="10dp"
+                android:background="@drawable/custom_button"
                 android:textSize="12sp"
                 />
 
