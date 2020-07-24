@@ -68,6 +68,7 @@ public class Advertisement extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final int CAMERA_PERMISSION_CODE = 101;
+    public static final int STORAGE_PERMISSION_CODE = 102;
 
     ArrayList<Bitmap> list = new ArrayList<Bitmap>();
     ArrayList<File> file = new ArrayList<>();
@@ -296,7 +297,9 @@ public class Advertisement extends AppCompatActivity {
        btn_image_capture.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               askCameraPermission();                                          //user defined function
+              // askStoragePermission();                                         //function to request storage permission
+               askCameraPermission();                                          //function to request camera
+
 
 
            }
@@ -313,6 +316,12 @@ public class Advertisement extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void askStoragePermission() {
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){//check if storage permission granted
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);//request storage permission
+        }
     }
 
     private void askCameraPermission() {
@@ -332,11 +341,21 @@ public class Advertisement extends AppCompatActivity {
         if(requestCode == CAMERA_PERMISSION_CODE)
         {
             if(grantResults.length >  0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
                 dispatchTakePictureIntent();
                 //openCamera();
             }else{                                      //If permission not granted
                 Toast.makeText(this,"Camera permission required to take photo",Toast.LENGTH_LONG).show();
 
+            }
+        }
+        if(requestCode == STORAGE_PERMISSION_CODE)
+        {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            }
+            else{
+                Toast.makeText(this,"Storage permission required to take photo",Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -418,9 +437,4 @@ public class Advertisement extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
 }
